@@ -16,6 +16,28 @@ export type Scalars = {
   DateTimeISO: any;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  createTask: Task;
+  deleteTask: Scalars['Boolean'];
+};
+
+
+export type MutationCreateTaskArgs = {
+  data: NewTaskInput;
+};
+
+
+export type MutationDeleteTaskArgs = {
+  taskId: Scalars['Float'];
+};
+
+export type NewTaskInput = {
+  description?: InputMaybe<Scalars['String']>;
+  finished?: InputMaybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   tasks: Array<Task>;
@@ -24,18 +46,96 @@ export type Query = {
 export type Task = {
   __typename?: 'Task';
   creationDate: Scalars['DateTimeISO'];
-  description: Scalars['String'];
-  finished: Scalars['Boolean'];
+  description?: Maybe<Scalars['String']>;
+  finished?: Maybe<Scalars['Boolean']>;
   id: Scalars['Int'];
   name: Scalars['String'];
 };
 
+export type AddNewTaskMutationVariables = Exact<{
+  data: NewTaskInput;
+}>;
+
+
+export type AddNewTaskMutation = { __typename?: 'Mutation', createTask: { __typename?: 'Task', id: number } };
+
+export type EraseTaskMutationVariables = Exact<{
+  taskId: Scalars['Float'];
+}>;
+
+
+export type EraseTaskMutation = { __typename?: 'Mutation', deleteTask: boolean };
+
 export type TasksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: number, name: string, description: string, creationDate: any, finished: boolean }> };
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: number, name: string, description?: string | null, creationDate: any, finished?: boolean | null }> };
 
 
+export const AddNewTaskDocument = gql`
+    mutation addNewTask($data: NewTaskInput!) {
+  createTask(data: $data) {
+    id
+  }
+}
+    `;
+export type AddNewTaskMutationFn = Apollo.MutationFunction<AddNewTaskMutation, AddNewTaskMutationVariables>;
+
+/**
+ * __useAddNewTaskMutation__
+ *
+ * To run a mutation, you first call `useAddNewTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddNewTaskMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addNewTaskMutation, { data, loading, error }] = useAddNewTaskMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useAddNewTaskMutation(baseOptions?: Apollo.MutationHookOptions<AddNewTaskMutation, AddNewTaskMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddNewTaskMutation, AddNewTaskMutationVariables>(AddNewTaskDocument, options);
+      }
+export type AddNewTaskMutationHookResult = ReturnType<typeof useAddNewTaskMutation>;
+export type AddNewTaskMutationResult = Apollo.MutationResult<AddNewTaskMutation>;
+export type AddNewTaskMutationOptions = Apollo.BaseMutationOptions<AddNewTaskMutation, AddNewTaskMutationVariables>;
+export const EraseTaskDocument = gql`
+    mutation EraseTask($taskId: Float!) {
+  deleteTask(taskId: $taskId)
+}
+    `;
+export type EraseTaskMutationFn = Apollo.MutationFunction<EraseTaskMutation, EraseTaskMutationVariables>;
+
+/**
+ * __useEraseTaskMutation__
+ *
+ * To run a mutation, you first call `useEraseTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useEraseTaskMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [eraseTaskMutation, { data, loading, error }] = useEraseTaskMutation({
+ *   variables: {
+ *      taskId: // value for 'taskId'
+ *   },
+ * });
+ */
+export function useEraseTaskMutation(baseOptions?: Apollo.MutationHookOptions<EraseTaskMutation, EraseTaskMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<EraseTaskMutation, EraseTaskMutationVariables>(EraseTaskDocument, options);
+      }
+export type EraseTaskMutationHookResult = ReturnType<typeof useEraseTaskMutation>;
+export type EraseTaskMutationResult = Apollo.MutationResult<EraseTaskMutation>;
+export type EraseTaskMutationOptions = Apollo.BaseMutationOptions<EraseTaskMutation, EraseTaskMutationVariables>;
 export const TasksDocument = gql`
     query Tasks {
   tasks {

@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from "type-graphql";
+import { Field, Int, ObjectType, InputType } from "type-graphql";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -18,15 +18,39 @@ export default class Task extends BaseEntity {
   @Field()
   name: string;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   description: string;
 
   @CreateDateColumn()
   @Field()
   creationDate: Date;
 
-  @Column()
-  @Field()
+  @Column({ default: false })
+  @Field({ nullable: true })
   finished: boolean;
+}
+
+@InputType()
+export class NewTaskInput {
+  @Field()
+  name: string;
+
+  @Field({ nullable: true, defaultValue: "aucune description" })
+  description?: string;
+
+  @Field({ nullable: true })
+  finished?: boolean;
+}
+
+@InputType()
+export class UpdateTaskInput {
+  @Field({ nullable: true })
+  name?: string;
+
+  @Field({ nullable: true })
+  description?: string;
+
+  @Field({ nullable: true })
+  finished?: boolean;
 }

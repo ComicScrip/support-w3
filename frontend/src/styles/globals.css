@@ -17,3 +17,47 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: #ffffff;
 }
+
+table {
+  border: solid black 2px;
+}
+
+th {
+  border: solid black 2px;
+  min-width: 100px;
+  width: fit-content;
+}
+
+tr {
+  border: solid black 2px;
+  padding: 10px;
+}
+td {
+  border: solid black 2px;
+  padding: 10px;
+  text-align: center;
+  min-width: 100px;
+  width: fit-content;
+}
+
+input {
+  padding: 10px 15px;
+  border: solid black 2px;
+  margin: 50px;
+}
+
+.delete-btn {
+  border: solid black 1px;
+  background-color: rgb(241, 113, 113);
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0px 2px;
+}
+
+.modify-btn {
+  border: solid black 1px;
+  background-color: rgb(113, 205, 241);
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0px 4px;
+}
