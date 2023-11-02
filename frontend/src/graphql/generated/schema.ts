@@ -13,48 +13,64 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  DateTimeISO: any;
 };
 
 export type Query = {
   __typename?: 'Query';
-  exampleQuery: Scalars['String'];
+  tasks: Array<Task>;
 };
 
-export type ExampleQueryVariables = Exact<{ [key: string]: never; }>;
+export type Task = {
+  __typename?: 'Task';
+  creationDate: Scalars['DateTimeISO'];
+  description: Scalars['String'];
+  finished: Scalars['Boolean'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+};
+
+export type TasksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExampleQuery = { __typename?: 'Query', exampleQuery: string };
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: number, name: string, description: string, creationDate: any, finished: boolean }> };
 
 
-export const ExampleDocument = gql`
-    query example {
-  exampleQuery
+export const TasksDocument = gql`
+    query Tasks {
+  tasks {
+    id
+    name
+    description
+    creationDate
+    finished
+  }
 }
     `;
 
 /**
- * __useExampleQuery__
+ * __useTasksQuery__
  *
- * To run a query within a React component, call `useExampleQuery` and pass it any options that fit your needs.
- * When your component renders, `useExampleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useTasksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTasksQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useExampleQuery({
+ * const { data, loading, error } = useTasksQuery({
  *   variables: {
  *   },
  * });
  */
-export function useExampleQuery(baseOptions?: Apollo.QueryHookOptions<ExampleQuery, ExampleQueryVariables>) {
+export function useTasksQuery(baseOptions?: Apollo.QueryHookOptions<TasksQuery, TasksQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ExampleQuery, ExampleQueryVariables>(ExampleDocument, options);
+        return Apollo.useQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
       }
-export function useExampleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ExampleQuery, ExampleQueryVariables>) {
+export function useTasksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TasksQuery, TasksQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ExampleQuery, ExampleQueryVariables>(ExampleDocument, options);
+          return Apollo.useLazyQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
         }
-export type ExampleQueryHookResult = ReturnType<typeof useExampleQuery>;
-export type ExampleLazyQueryHookResult = ReturnType<typeof useExampleLazyQuery>;
-export type ExampleQueryResult = Apollo.QueryResult<ExampleQuery, ExampleQueryVariables>;
+export type TasksQueryHookResult = ReturnType<typeof useTasksQuery>;
+export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
+export type TasksQueryResult = Apollo.QueryResult<TasksQuery, TasksQueryVariables>;

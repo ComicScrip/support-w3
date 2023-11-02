@@ -1,4 +1,5 @@
 import db from "./db";
+import Task from "./entities/Task";
 
 async function clearDB() {
   const runner = db.createQueryRunner();
@@ -15,6 +16,12 @@ async function clearDB() {
 async function main() {
   await db.initialize();
   await clearDB();
+
+  await Task.create({
+    description: "C'est ma première tâche",
+    finished: false,
+    name: "Finir le projet GraphQL",
+  }).save();
 }
 
 main();

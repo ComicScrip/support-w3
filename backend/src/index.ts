@@ -3,12 +3,12 @@ import db from "./db";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { buildSchema } from "type-graphql";
-import ExampleResolver from "./resolvers/exampleResolver";
+import TaskResolver from "./resolvers/taskResolver";
 
 const port = 4001;
 
 buildSchema({
-  resolvers: [ExampleResolver],
+  resolvers: [TaskResolver],
 }).then(async (schema) => {
   await db.initialize();
   const server = new ApolloServer({ schema });
