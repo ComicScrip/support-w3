@@ -18,7 +18,7 @@ class TaskResolver {
 
   @Mutation(() => Boolean)
   async deleteTask(@Arg("taskId") id: number) {
-    const task = await Task.findOneById(id);
+    const task = await Task.findOneBy({ id });
     if (task === null) {
       throw new GraphQLError("not found");
     }
@@ -28,7 +28,7 @@ class TaskResolver {
 
   @Query(() => Task)
   async getTask(@Arg("taskId") id: number) {
-    const task = await Task.findOneById(id);
+    const task = await Task.findOneBy({ id });
     if (task === null) {
       throw new GraphQLError("not found");
     }
@@ -40,7 +40,7 @@ class TaskResolver {
     @Arg("taskId") id: number,
     @Arg("data") data: UpdateTaskInput
   ) {
-    const task = await Task.findOneById(id);
+    const task = await Task.findOneBy({ id });
     if (task === null) {
       throw new GraphQLError("not found");
     }

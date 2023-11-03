@@ -1,0 +1,5 @@
+mutation ModifyTask($taskId: Float!, $data: UpdateTaskInput!) {
+  modifyTask(taskId: $taskId, data: $data) {
+    id
+  }
+}

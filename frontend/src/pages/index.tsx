@@ -3,14 +3,16 @@ import {
   useTasksQuery,
   useAddNewTaskMutation,
   useEraseTaskMutation,
+  Task,
 } from "@/graphql/generated/schema";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import UpdateTask from "@/components/UpdateTask";
 
 export default function Home() {
   const { data, refetch } = useTasksQuery();
   const [createTask] = useAddNewTaskMutation();
   const [deleteTask] = useEraseTaskMutation();
-  console.log({ data });
+  const [openTask, setOpenTask] = useState<Task | null>(null);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,8 +32,16 @@ export default function Home() {
     deleteTask({ variables: { taskId } }).then(() => refetch());
   }
 
+  function handleModalTask(task: Task) {
+    setOpenTask(task);
+    (document.getElementById("my_modal_1") as any)?.showModal();
+  }
+
+  console.log(openTask);
+
   return (
     <Layout title="Home">
+      <UpdateTask task={openTask} setOpenTask={setOpenTask} refetch={refetch} />
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Nom de la tache :</label>
         <input type="text" name="name" id="name" />
@@ -65,6 +75,12 @@ export default function Home() {
                     }}
                   >
                     Supprimer
+                  </button>
+                  <button
+                    className="modify-btn"
+                    onClick={() => handleModalTask(task)}
+                  >
+                    Modifier
                   </button>
                 </td>
               </tr>
