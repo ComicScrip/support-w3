@@ -66,13 +66,36 @@ td {
 }
 
 .green {
+<<<<<<< HEAD
   background-color: rgb(68, 197, 68);
+=======
+  background-color: rgb(123, 233, 123);
+}
+
+.modal-action {
+  display: flex;
+  justify-content: space-around;
+>>>>>>> 1c14d5630d744f98fd95d5a164a7d4714119cb52
 }
 
 label {
   text-align: center;
   font-weight: 900;
+<<<<<<< HEAD
   color: rgb(32, 32, 32);
+=======
+  color: rgb(97, 189, 229);
+}
+
+.green {
+  background-color: rgb(118, 246, 118);
+}
+
+label {
+  text-align: center;
+  font-weight: 900;
+  color: rgb(103, 212, 246);
+>>>>>>> 1c14d5630d744f98fd95d5a164a7d4714119cb52
 }
 
 .modal-action {
@@ -80,6 +103,7 @@ label {
   justify-content: center;
   align-items: center;
 }
+<<<<<<< HEAD
 
 * {
   box-sizing: border-box;
@@ -257,3 +281,5 @@ h1 {
   background-color: #f7f7f991;
   border-radius: 20px;
 }
+=======
+>>>>>>> 1c14d5630d744f98fd95d5a164a7d4714119cb52

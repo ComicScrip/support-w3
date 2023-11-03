@@ -12,7 +12,6 @@ const UpdateTask = ({ task, setOpenTask, refetch }: updateTaskProps) => {
     setOpenTask(null);
   }
 
-
   const [updateTask] = useModifyTaskMutation();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {

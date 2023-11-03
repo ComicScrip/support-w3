@@ -48,8 +48,6 @@ export default function Home() {
     (document.getElementById("my_modal_1") as any)?.showModal();
   }
 
-  console.log(openTask);
-
   return (
     <Layout title="Home">
       <h1>TODO List GrapQL / Next</h1>
