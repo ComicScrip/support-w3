@@ -61,3 +61,34 @@ input {
   padding: 2px;
   margin: 0px 4px;
 }
+
+.green {
+  background-color: rgb(123, 233, 123);
+}
+
+.modal-action {
+  display: flex;
+  justify-content: space-around;
+}
+
+label {
+  text-align: center;
+  font-weight: 900;
+  color: rgb(97, 189, 229);
+}
+
+.green {
+  background-color: rgb(118, 246, 118);
+}
+
+label {
+  text-align: center;
+  font-weight: 900;
+  color: rgb(103, 212, 246);
+}
+
+.modal-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

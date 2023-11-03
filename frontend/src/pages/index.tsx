@@ -18,7 +18,7 @@ export default function Home() {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const formJSON: any = Object.fromEntries(formData.entries());
-
+    console.log(formJSON);
     createTask({
       variables: {
         data: {
@@ -36,8 +36,6 @@ export default function Home() {
     setOpenTask(task);
     (document.getElementById("my_modal_1") as any)?.showModal();
   }
-
-  console.log(openTask);
 
   return (
     <Layout title="Home">

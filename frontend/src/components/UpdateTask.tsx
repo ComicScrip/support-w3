@@ -12,14 +12,14 @@ const UpdateTask = ({ task, setOpenTask, refetch }: updateTaskProps) => {
     setOpenTask(null);
   }
 
-  const formRef = useRef<HTMLFormElement>();
-
   const [updateTask] = useModifyTaskMutation();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const formJSON: any = Object.fromEntries(formData.entries());
+
+    console.log(e);
 
     updateTask({
       variables: {
@@ -31,6 +31,7 @@ const UpdateTask = ({ task, setOpenTask, refetch }: updateTaskProps) => {
     }).then(() => {
       refetch();
       handleReset();
+      (document.getElementById("my_modal_1") as any)?.close();
     });
   }
 
@@ -39,11 +40,7 @@ const UpdateTask = ({ task, setOpenTask, refetch }: updateTaskProps) => {
       <div className="modal-box">
         <h3 className="font-bold text-lg">Modifier sa tâche</h3>
         {task && (
-          <form
-            className="flex flex-col"
-            onSubmit={handleSubmit}
-            ref={formRef as any}
-          >
+          <form className="flex flex-col" onSubmit={handleSubmit}>
             <label htmlFor="name">Name</label>
             <input type="text" name="name" defaultValue={task.name} />
             <label htmlFor="description">description</label>
@@ -58,21 +55,19 @@ const UpdateTask = ({ task, setOpenTask, refetch }: updateTaskProps) => {
               className="toggle"
               defaultChecked={task.finished || false}
             />
+            <button type="submit" className="btn green">
+              Valider
+            </button>
           </form>
         )}
 
         <div className="modal-action">
           <form method="dialog">
-            <button className="btn mr-2" onClick={() => handleReset()}>
-              Close
-            </button>
             <button
-              className="btn"
-              onClick={() => {
-                formRef?.current?.submit();
-              }}
+              className="btn mr-2 close-btn"
+              onClick={() => handleReset()}
             >
-              Valider
+              Close
             </button>
           </form>
         </div>
