@@ -1,5 +1,9 @@
 mutation addNewTask($data: NewTaskInput!) {
   createTask(data: $data) {
     id
+    description
+    finished
+    name
+    creationDate
   }
 }

@@ -23,9 +23,8 @@ table {
 }
 
 th {
+  font-size: 1.4rem;
   border: solid black 2px;
-  min-width: 100px;
-  width: fit-content;
 }
 
 tr {
@@ -34,30 +33,227 @@ tr {
 }
 td {
   border: solid black 2px;
-  padding: 10px;
-  text-align: center;
-  min-width: 100px;
-  width: fit-content;
 }
 
-input {
-  padding: 10px 15px;
+.updateForm input {
+  padding: 10px 20px;
+  border-radius: 5px;
   border: solid black 2px;
-  margin: 50px;
+  margin: 20px;
+  text-align: center;
+}
+
+.updateForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .delete-btn {
   border: solid black 1px;
   background-color: rgb(241, 113, 113);
   border-radius: 5px;
-  padding: 2px;
-  margin: 0px 2px;
+  padding: 5px 10px;
+  margin: 0px 5px;
 }
 
 .modify-btn {
   border: solid black 1px;
   background-color: rgb(113, 205, 241);
   border-radius: 5px;
-  padding: 2px;
-  margin: 0px 4px;
+  padding: 5px 10px;
+  margin: 0px 5px;
+}
+
+.green {
+  background-color: rgb(68, 197, 68);
+}
+
+label {
+  text-align: center;
+  font-weight: 900;
+  color: rgb(32, 32, 32);
+}
+
+.modal-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+body {
+  font-family: Helvetica;
+  -webkit-font-smoothing: antialiased;
+  background: radial-gradient(circle, rgba(162,162,162,1) 0%, rgba(48,58,138,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  padding: 30px 0;
+}
+
+/* Table Styles */
+
+.table-wrapper {
+  margin: 10px 70px 70px;
+  box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.fl-table {
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.fl-table td,
+.fl-table th {
+  text-align: center;
+  padding: 8px;
+}
+
+.fl-table td {
+  border-right: 1px solid #f8f8f8;
+  font-size: 12px;
+}
+
+.fl-table thead th {
+  color: #ffffff;
+  background: #a8aaa9;
+}
+
+.fl-table thead th:nth-child(odd) {
+  color: #ffffff;
+  background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+  .fl-table {
+    display: block;
+    width: 100%;
+  }
+  .table-wrapper:before {
+    content: "Scroll horizontally >";
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    color: white;
+    padding: 0 0 10px;
+  }
+  .fl-table thead,
+  .fl-table tbody,
+  .fl-table thead th {
+    display: block;
+  }
+  .fl-table thead th:last-child {
+    border-bottom: none;
+  }
+  .fl-table thead {
+    float: left;
+  }
+  .fl-table tbody {
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+  }
+  .fl-table td,
+  .fl-table th {
+    padding: 20px 0.625em 0.625em 0.625em;
+    height: 60px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 120px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+  }
+  .fl-table thead th {
+    text-align: left;
+    border-bottom: 1px solid #f7f7f9;
+  }
+  .fl-table tbody tr {
+    display: table-cell;
+  }
+  .fl-table tbody tr:nth-child(odd) {
+    background: none;
+  }
+  .fl-table tr:nth-child(even) {
+    background: transparent;
+  }
+  .fl-table tr td:nth-child(odd) {
+    background: #f8f8f8;
+    border-right: 1px solid #e6e4e4;
+  }
+  .fl-table tr td:nth-child(even) {
+    border-right: 1px solid #e6e4e4;
+  }
+  .fl-table tbody td {
+    display: block;
+    text-align: center;
+  }
+}
+
+.add-task-container {
+  border: solid black 2px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #a8aaa9;
+  margin-bottom: 30px;
+}
+
+.add-task-container input {
+  border: solid black 1px;
+  
+}
+
+.add-task-btn {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: rgb(68, 197, 68);
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.add-task-btn:hover, .delete-btn:hover, .modify-btn:hover {
+  scale: 1.05;
+  filter: brightness(0.8);
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 60px;
+  color: rgb(12, 15, 192);
+  background-color: #f7f7f991;
+  border-radius: 20px;
 }
